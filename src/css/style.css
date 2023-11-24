@@ -1,0 +1,11 @@
+.breed-select {
+    width: 200px;
+    height: 30px;
+    /* position: absolute; */
+
+    
+}
+
+.cat-info {
+    display: flex;
+}
