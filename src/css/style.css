@@ -36,3 +36,13 @@ h2,p {
 .hidden {
     display: none;
 }
+
+.error {
+    color: red;
+}
+
+.loader {
+    margin-top: 20px;
+   
+
+}

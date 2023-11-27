@@ -23,28 +23,22 @@ fetchBreeds()
 
 elements.selectBreed.addEventListener("change", handlerPickBreed)
 
-console.dir(elements.selectBreed);
 function handlerPickBreed(evt) {
     
     if (!evt.currentTarget.value) {
         return;
     }
     
-    fetchCatByBreed(evt.currentTarget.value)
+    fetchCatByBreed(evt.currentTarget.value, elements)
         .then((data) => {
-            elements.loader.classList.remove("hidden");
-            // elements.selectBreed.classList.add("hidden");
-            elements.catInfo.classList.add("hidden");
-            setTimeout(() => {
-                 elements.catInfo.classList.remove("hidden");
-                elements.catInfo.innerHTML = createMarkupCatInfo(data[0]);
-                elements.loader.classList.add("hidden");
-                // elements.selectBreed.classList.remove("hidden");
-            }, 500);
-            
+            elements.catInfo.innerHTML = createMarkupCatInfo(data[0]);
+            elements.catInfo.classList.remove("hidden");
+            elements.loader.classList.add("hidden");            
         })
         .catch((err) => {
+            console.log(err);
             elements.selectBreed.classList.add("hidden");
+            elements.loader.classList.add("hidden");     
             elements.error.classList.remove("hidden");
         })
 }
@@ -60,7 +54,8 @@ function createMarkupCatInfo(breed) {
             <h2>${name}</h2>
             <p>${description}</p>
             <p><b>Temperament:</b> ${temperament}</p>
-        </div>`;
+        </div>
+        `;
 }
 
 function createMarkupSelect(arr) {
@@ -70,3 +65,6 @@ function createMarkupSelect(arr) {
         `
     ).join("");
 }
+
+
+export { elements };
